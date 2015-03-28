@@ -1,0 +1,32 @@
+﻿@model WebMvcAjax.Models.DataType
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.form.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ajax-form.js")"></script>
+
+
+<!--Ajax.BeginForm parameters-->
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST"
+    };
+
+    var htmlAttributes = new
+    {
+        enctype = "multipart/form-data"
+    };
+}
+
+@using (Ajax.BeginForm("GetReport", "Home", new {dataType = @Model}, ajaxOptions, htmlAttributes))
+{
+    @Html.AntiForgeryToken()
+    <input type="file" name="file" id="f"><br>
+    <input type="submit" value="Upload File to Server">
+    <div id="state">@Model</div>
+}
+   
+        
+    
+
+
